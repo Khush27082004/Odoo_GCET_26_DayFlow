@@ -5,6 +5,9 @@
  * - Employees see: Dashboard, Profile, Attendance, Leave, Payroll
  * - Admins see: Dashboard, Employees, Attendance, Leave Approval, Payroll, Reports, Profile
  * Shows user information and logout functionality
+ * 
+ * Mobile responsive: Hidden by default on mobile, can be opened via hamburger menu
+ * Desktop: Always visible
  */
 
 import React from 'react';
@@ -21,12 +24,22 @@ import {
   Users,
   CheckSquare,
   Building2,
+  X,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const handleLogout = () => {
     logout();
@@ -56,71 +69,107 @@ const Sidebar: React.FC = () => {
   // Select appropriate links based on user role
   const links = user?.role === 'admin' ? adminLinks : employeeLinks;
 
-  return (
-    <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-sidebar text-sidebar-foreground">
-      <div className="flex h-full flex-col">
-        {/* Logo */}
-        <div className="flex h-16 items-center gap-2 border-b border-sidebar-border px-6">
-          <Building2 className="h-8 w-8 text-sidebar-primary" />
-          <div>
-            <h1 className="text-lg font-bold text-sidebar-foreground">DAYFLOW</h1>
-            <p className="text-xs text-sidebar-foreground/60">HR Management System</p>
-          </div>
+  // Handle menu item click - close sidebar on mobile
+  const handleLinkClick = () => {
+    if (isMobile && onClose) {
+      onClose();
+    }
+  };
+
+  // Sidebar content component (reusable for both mobile and desktop)
+  const SidebarContent = () => (
+    <div className="flex h-full flex-col">
+      {/* Logo with Close Button (mobile only) */}
+      <div className="flex h-16 items-center gap-2 border-b border-sidebar-border px-6">
+        <Building2 className="h-8 w-8 text-sidebar-primary" />
+        <div className="flex-1">
+          <h1 className="text-lg font-bold text-sidebar-foreground">DAYFLOW</h1>
+          <p className="text-xs text-sidebar-foreground/60">HR Management System</p>
         </div>
-
-        {/* User Info */}
-        <div className="border-b border-sidebar-border px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground font-semibold">
-              {user?.firstName?.[0]}
-              {user?.lastName?.[0]}
-            </div>
-            <div className="flex-1 overflow-hidden">
-              <p className="truncate text-sm font-medium text-sidebar-foreground">
-                {user?.firstName} {user?.lastName}
-              </p>
-              <p className="truncate text-xs text-sidebar-foreground/60 capitalize">
-                {user?.role}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto px-4 py-4">
-          <ul className="space-y-1">
-            {links.map((link) => (
-              <li key={link.to}>
-                <NavLink
-                  to={link.to}
-                  className={({ isActive }) =>
-                    cn(
-                      'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                      isActive
-                        ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                        : 'text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-                    )
-                  }
-                >
-                  <link.icon className="h-5 w-5" />
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Logout */}
-        <div className="border-t border-sidebar-border p-4">
-          <button
-            onClick={handleLogout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground/80 transition-colors hover:bg-destructive hover:text-destructive-foreground"
+        {isMobile && onClose && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="h-8 w-8 text-sidebar-foreground hover:bg-sidebar-accent"
           >
-            <LogOut className="h-5 w-5" />
-            Logout
-          </button>
+            <X className="h-5 w-5" />
+            <span className="sr-only">Close sidebar</span>
+          </Button>
+        )}
+      </div>
+
+      {/* User Info */}
+      <div className="border-b border-sidebar-border px-6 py-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sidebar-primary text-sidebar-primary-foreground font-semibold">
+            {user?.firstName?.[0]}
+            {user?.lastName?.[0]}
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <p className="truncate text-sm font-medium text-sidebar-foreground">
+              {user?.firstName} {user?.lastName}
+            </p>
+            <p className="truncate text-xs text-sidebar-foreground/60 capitalize">
+              {user?.role}
+            </p>
+          </div>
         </div>
       </div>
+
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto px-4 py-4">
+        <ul className="space-y-1">
+          {links.map((link) => (
+            <li key={link.to}>
+              <NavLink
+                to={link.to}
+                onClick={handleLinkClick}
+                className={({ isActive }) =>
+                  cn(
+                    'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                    isActive
+                      ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                      : 'text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                  )
+                }
+              >
+                <link.icon className="h-5 w-5" />
+                {link.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Logout */}
+      <div className="border-t border-sidebar-border p-4">
+        <button
+          onClick={handleLogout}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground/80 transition-colors hover:bg-destructive hover:text-destructive-foreground"
+        >
+          <LogOut className="h-5 w-5" />
+          Logout
+        </button>
+      </div>
+    </div>
+  );
+
+  // Mobile: Use Sheet component for overlay sidebar
+  if (isMobile) {
+    return (
+      <Sheet open={isOpen} onOpenChange={(open) => !open && onClose?.()}>
+        <SheetContent side="left" className="w-64 p-0 bg-sidebar text-sidebar-foreground">
+          <SidebarContent />
+        </SheetContent>
+      </Sheet>
+    );
+  }
+
+  // Desktop: Fixed sidebar always visible
+  return (
+    <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-sidebar text-sidebar-foreground transition-transform duration-300 ease-in-out">
+      <SidebarContent />
     </aside>
   );
 };
