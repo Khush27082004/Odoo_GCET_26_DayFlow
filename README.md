@@ -1,16 +1,117 @@
-# React + Vite
+# DAYFLOW - Human Resources Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DAYFLOW is a comprehensive Human Resources Management System (HRMS) designed to streamline employee management, attendance tracking, leave management, and payroll processing for organizations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Employee Management**: Complete employee profile management with personal and job details
+- **Attendance Tracking**: Real-time attendance tracking with check-in/check-out functionality
+- **Leave Management**: Employee leave requests and admin approval workflow
+- **Payroll Management**: Comprehensive salary structure management with detailed breakdowns
+- **Reports & Analytics**: Visual reports and analytics for attendance, leave, and payroll data
+- **Role-Based Access**: Separate dashboards for employees and administrators
+- **User Authentication**: Secure login system with role-based access control
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project is built with modern web technologies:
 
-## Expanding the ESLint configuration
+- **Vite** - Fast build tool and development server
+- **TypeScript** - Type-safe JavaScript
+- **React** - UI library for building user interfaces
+- **shadcn-ui** - High-quality component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router** - Client-side routing
+- **Recharts** - Chart library for data visualization
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+```sh
+git clone <YOUR_GIT_URL>
+cd dayflow
+```
+
+2. Install dependencies:
+```sh
+npm install
+```
+
+3. Start the development server:
+```sh
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:8080`
+
+### Building for Production
+
+To create a production build:
+
+```sh
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+### Preview Production Build
+
+To preview the production build locally:
+
+```sh
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── layout/         # Layout components (Sidebar, DashboardLayout)
+│   └── ui/             # UI components (buttons, cards, forms, etc.)
+├── contexts/           # React contexts (AuthContext)
+├── hooks/              # Custom React hooks
+├── pages/              # Page components
+│   ├── admin/         # Admin-specific pages
+│   └── employee/      # Employee-specific pages
+├── services/           # Business logic and data services
+└── lib/                # Utility functions
+```
+
+## Usage
+
+### Employee Features
+
+- View personal dashboard with attendance summary
+- Check in/out for daily attendance
+- Request leave with different leave types
+- View salary details and payment history
+- Update personal profile information
+
+### Admin Features
+
+- View organization-wide dashboard
+- Manage employee records
+- Monitor attendance across all employees
+- Approve or reject leave requests
+- Manage payroll and salary structures
+- Generate comprehensive reports and analytics
+
+## Development
+
+The project uses ESLint for code quality. To run linting:
+
+```sh
+npm run lint
+```
+
+## License
+
+This project is proprietary software. All rights reserved.
