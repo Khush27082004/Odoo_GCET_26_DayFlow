@@ -1,117 +1,177 @@
-# DAYFLOW - Human Resources Management System
+# 🌊 DAYFLOW – Human Resources Management System (HRMS)
 
-DAYFLOW is a comprehensive Human Resources Management System (HRMS) designed to streamline employee management, attendance tracking, leave management, and payroll processing for organizations.
+🚀 **DAYFLOW** is a modern, frontend-based **Human Resources Management System** designed to simplify and organize daily HR operations such as employee management, attendance, leave tracking, and payroll overview.
 
-## Features
+Built with a clean UI and smooth user experience, DAYFLOW focuses on **clarity, usability, and responsiveness** across desktop and mobile devices.
 
-- **Employee Management**: Complete employee profile management with personal and job details
-- **Attendance Tracking**: Real-time attendance tracking with check-in/check-out functionality
-- **Leave Management**: Employee leave requests and admin approval workflow
-- **Payroll Management**: Comprehensive salary structure management with detailed breakdowns
-- **Reports & Analytics**: Visual reports and analytics for attendance, leave, and payroll data
-- **Role-Based Access**: Separate dashboards for employees and administrators
-- **User Authentication**: Secure login system with role-based access control
+---
 
-## Technologies Used
+## 🏆 Project Overview
 
-This project is built with modern web technologies:
+- **Project Name:** DAYFLOW
+- **Category:** Human Resources Management System
+- **Type:** Frontend-Only Web Application
+- **Access Control:** Role-Based (Admin & Employee)
 
-- **Vite** - Fast build tool and development server
-- **TypeScript** - Type-safe JavaScript
-- **React** - UI library for building user interfaces
-- **shadcn-ui** - High-quality component library
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Router** - Client-side routing
-- **Recharts** - Chart library for data visualization
+---
 
-## Getting Started
+## 🔍 Project Description
 
-### Prerequisites
+DAYFLOW helps organizations manage their workforce efficiently from a single dashboard.
 
-- Node.js (v18 or higher recommended)
-- npm or yarn package manager
+Employees can track attendance, apply for leave, and manage their profiles, while administrators can monitor employees, approve leaves, and view payroll summaries — all through a clean and responsive interface.
 
-### Installation
+The project is built with **simplicity and scalability in mind**, making it easy to understand, extend, and maintain.
 
-1. Clone the repository:
-```sh
-git clone <YOUR_GIT_URL>
-cd dayflow
-```
+---
 
-2. Install dependencies:
-```sh
-npm install
-```
+## ✨ Key Features
 
-3. Start the development server:
-```sh
-npm run dev
-```
+### 👨‍💼 Employee Features
 
-4. Open your browser and navigate to `http://localhost:8080`
+- Personal dashboard with summary
+- Daily check-in / check-out attendance
+- Apply for leave and track status
+- View payroll details
+- Update profile information
 
-### Building for Production
+### 🛠 Admin Features
 
-To create a production build:
+- Admin dashboard overview
+- Employee record management
+- Attendance monitoring
+- Leave approval / rejection
+- Payroll overview
+- Reports & analytics
 
-```sh
-npm run build
-```
+### 🔐 System Features
 
-The built files will be in the `dist` directory.
+- Role-based access (Admin / Employee)
+- Secure authentication flow
+- Fully responsive UI (Mobile + Desktop)
+- Clean navigation with collapsible sidebar
 
-### Preview Production Build
+---
 
-To preview the production build locally:
+## 🧱 Tech Stack
 
-```sh
-npm run preview
-```
+- **Vite** – Fast development & build tool
+- **React + TypeScript** – Component-based UI with type safety
+- **Tailwind CSS** – Utility-first styling
+- **shadcn/ui** – Modern UI components
+- **React Router** – Client-side routing
+- **Recharts** – Data visualization
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── layout/         # Layout components (Sidebar, DashboardLayout)
-│   └── ui/             # UI components (buttons, cards, forms, etc.)
-├── contexts/           # React contexts (AuthContext)
-├── hooks/              # Custom React hooks
-├── pages/              # Page components
-│   ├── admin/         # Admin-specific pages
-│   └── employee/      # Employee-specific pages
-├── services/           # Business logic and data services
-└── lib/                # Utility functions
+├── components/
+│   ├── layout/          # Sidebar, Header, Layout wrappers
+│   └── ui/              # Buttons, Cards, Forms, etc.
+├── contexts/            # Auth context (role-based access)
+├── hooks/               # Custom React hooks
+├── pages/
+│   ├── admin/           # Admin pages
+│   └── employee/        # Employee pages
+├── services/            # App logic & helpers
+└── lib/                 # Utility functions
 ```
 
-## Usage
+---
 
-### Employee Features
+## ⚙️ Getting Started
 
-- View personal dashboard with attendance summary
-- Check in/out for daily attendance
-- Request leave with different leave types
-- View salary details and payment history
-- Update personal profile information
+### ✅ Prerequisites
 
-### Admin Features
+- Node.js (v18 or higher)
+- npm or yarn
 
-- View organization-wide dashboard
-- Manage employee records
-- Monitor attendance across all employees
-- Approve or reject leave requests
-- Manage payroll and salary structures
-- Generate comprehensive reports and analytics
+### 📦 Installation
 
-## Development
-
-The project uses ESLint for code quality. To run linting:
-
-```sh
-npm run lint
+```bash
+git clone <YOUR_GIT_URL>
+cd dayflow
+npm install
 ```
 
-## License
+### ▶️ Run Development Server
 
-This project is proprietary software. All rights reserved.
+```bash
+npm run dev
+```
+
+Open in browser:
+👉 `http://localhost:8080`
+
+---
+
+## 🏗 Build for Production
+
+```bash
+npm run build
+```
+
+Production files will be generated in the `dist/` folder.
+
+### 🔍 Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+## 📱 Responsive Design
+
+- Sidebar collapses automatically on mobile
+- Mobile menu open / close support
+- Smooth transitions and clean layout
+- Consistent UI across all pages
+
+---
+
+## 🚧 Future Enhancements
+
+- Backend integration (API & database)
+- Real payroll calculations
+- Notifications system
+- Exportable reports (PDF / Excel)
+- Advanced role permissions
+
+---
+
+### 🖥️ Desktop Preview
+
+<p align="center">
+  <img width="600" alt="Desktop Preview" src="https://github.com/user-attachments/assets/abc148df-ad01-4ada-80f7-8fb91d355b86" />
+</p>
+
+### 📱 Mobile Preview
+
+<p align="center">
+  <img height="600" alt="Mobile" src="https://github.com/user-attachments/assets/b30015ae-6e6a-4965-952d-f56bd279dfd7" />
+</p>
+
+
+## 🏁 Project Status
+
+🎯 **Core features completed**
+🔄 UI polishing & responsiveness improvements
+🧪 Ready for demo & evaluation
+
+---
+
+## 👥 Team
+
+- 👤 **Khush R.** (Team lead)
+- 👤 **Krunal W.**
+
+---
+
+## 📜 License
+
+This project is **proprietary software**.
+All rights reserved © DAYFLOW.
